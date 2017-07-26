@@ -17,6 +17,8 @@ class Constants{
 	const PARTY_THREE = "JD(S)";
 	const PARTY_FOUR = "Others";
 	const PARTY_TITLE_TOTAL = "Total";
+	
+	const START_CELL = 5;
 }
 
 ?>
