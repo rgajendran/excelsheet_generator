@@ -1,5 +1,5 @@
 <?php
-require_once 'lib/PHPExcel/Classes/PHPExcel.php';
+/*require_once 'lib/PHPExcel/Classes/PHPExcel.php';
 require_once 'lib/PHPExcel/Classes/PHPExcel/IOFactory.php';
 
 // Create new PHPExcel object
@@ -28,5 +28,7 @@ header('Content-Disposition: attachment;filename="name_of_file.xls"');
 header('Cache-Control: max-age=0');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->save('php://output');
+*/
 
+echo "Welcome Gaju";
 ?>

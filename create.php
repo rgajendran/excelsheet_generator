@@ -1,15 +1,24 @@
 <?php
-
+/*
+ * Change Constant Name
+ * Change File Name
+ * Change Save File Name
+ * Change Change row number
+ * 
+ */
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 require_once 'lib/PHPExcel/Classes/PHPExcel.php';
 require_once 'lib/PHPExcel/Classes/PHPExcel/IOFactory.php';
 require 'class/ManualStyle.php';
 require 'class/Constants.php';
 
-$inputFileName = 'nippani.xlsx';
+ob_clean();
 
+$inputFileName = 'files/'.Constants::FILENAME;
+$filename = Constants::SAVE_FILENAME;
 // Create new PHPExcel object
 $objPHPExcel = new PHPExcel();
 $styles = new ManualStyle();
@@ -28,13 +37,13 @@ $highestColumn = $sheet->getHighestColumn();
 
 //***********************************************************************************************************************************
 
-for ($row = 198; $row <= 263; $row++){ 
+for ($row = Constants::START_CELL; $row <= Constants::END_CELL; $row++){ 
     //  Read a row of data into an array
     $rowData = $sheet->rangeToArray('A'.$row .':' . $highestColumn. $row,
                                     NULL,
                                     TRUE,
                                     FALSE);
-	$n = $row - 198;																	
+	$n = $row - Constants::START_CELL;;																	
 	$t1_booth = $rowData[0][0];	 if(empty($t1_booth)){$t1_booth = 0;}
 	$t1_one = $rowData[0][1];	 if(empty($t1_one)){$t1_one = 0;}
 	$t1_two = $rowData[0][2];	 if(empty($t1_two)){$t1_two = 0;}
@@ -267,7 +276,7 @@ $objPHPExcel->getActiveSheet()->setTitle('Booth-'.$booth);
 }
 //Redirect output to a client’s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="name_of_file.xls"');
+header('Content-Disposition: attachment;filename="'.$filename.'.xls"');
 header('Cache-Control: max-age=0');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->save('php://output');
